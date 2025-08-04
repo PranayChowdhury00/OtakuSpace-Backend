@@ -20,6 +20,12 @@ app.use(cors(
     }
 )); 
 
+// 🔧 Fix window.closed warning (if needed)
+app.use((req, res, next) => {
+  res.removeHeader("Cross-Origin-Opener-Policy");
+  next();
+});
+
 // cookie parser middleware
 app.use(cookieParser());
 
