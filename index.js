@@ -15,7 +15,7 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cors(
     {
-        origin: ['http://localhost:5173','https://porleiviral.web.app/'], //replace with client address
+        origin: ['http://localhost:5173','https://porleiviral.web.app'], //replace with client address
         credentials: true,
     }
 )); 
@@ -287,18 +287,6 @@ app.delete("/watchList/:id", async (req, res) => {
 
 
 
-
-function extractImageFromDescription(description) {
-  // First try to find ANN's typical image format
-  const annImageRegex = /<img [^>]*src=["'](\/images\/[^"']+)["']/i;
-  const annMatch = description.match(annImageRegex);
-  if (annMatch) return annMatch[1];
-  
-  // Fallback to generic image search
-  const imgRegex = /<img[^>]+src=["']([^"'>]+)["']/i;
-  const match = description.match(imgRegex);
-  return match ? match[1] : null;
-}
 
 function cleanDescription(description) {
   // Remove all HTML tags and truncate
